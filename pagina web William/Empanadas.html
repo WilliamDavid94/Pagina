@@ -1,0 +1,214 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería de Empanadas Horneadas</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: #F5DEB3; /* Color café claro */
+            margin: 0;
+            padding: 0;
+            color: #5A3E1B; /* Marrón oscuro para contraste */
+        }
+
+        h1 {
+            font-size: 40px;
+            color: #8B4513;
+            text-shadow: 2px 2px 5px #D2B48C;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 18px;
+            width: 80%;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 10px;
+            color: #5A3E1B;
+        }
+
+        .contador {
+            font-size: 24px;
+            font-weight: bold;
+            background: rgba(255, 255, 255, 0.9);
+            display: inline-block;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px;
+        }
+
+            .contador span {
+                font-size: 30px;
+                color: #8B4513;
+            }
+
+        .boton-sumar {
+            background: #A0522D;
+            color: white;
+            font-size: 18px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+            .galeria img {
+                width: 100%;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: transform 0.3s ease;
+                box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            }
+
+                .galeria img:hover {
+                    transform: scale(1.1);
+                }
+
+        .comentarios {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 80%;
+            margin: auto;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #8B4513;
+            resize: none;
+            font-size: 16px;
+        }
+
+        .boton-comentar {
+            margin-top: 10px;
+            background: #8B4513;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .comentario-lista {
+            margin-top: 15px;
+            text-align: left;
+            background: #FAEBD7;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        /* Botón de WhatsApp */
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            font-size: 18px;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+            .whatsapp img {
+                width: 40px;
+            }
+
+        /* Botón de regreso */
+        .boton-regreso {
+            background: #8B4513;
+            color: white;
+            font-size: 18px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+            .boton-regreso:hover {
+                background: #5A3E1B;
+            }
+    </style>
+</head>
+<body>
+
+    <h1>🥟 ¡Empanadas Horneadas, Crujientes y Deliciosas! 🥟</h1>
+    <p>Descubre el sabor irresistible de nuestras empanadas horneadas, con ingredientes frescos y una receta que te hará volver por más. ¡Perfectas para compartir en cualquier momento! 😋</p>
+
+    <!-- Contador de empanadas -->
+    <div class="contador">
+        🥟 Empanadas vendidas: <span id="contador">0</span>
+        <br>
+        <button class="boton-sumar" onclick="sumarEmpanada()">+1 Vendida</button>
+    </div>
+
+    <div class="galeria">
+        <a href="#img1"><img src="E:\pagina web William\Imagenes\Empanada.jpg" alt="Empanada 1"></a>
+        <a href="#img2"><img src="E:\pagina web William\Imagenes\Empanadas.jpg" alt="Empanada 2"></a>
+        <a href="#img3"><img src="E:\pagina web William\Imagenes\presentación.jpg" alt="Empanada 3"></a>
+        <a href="#img4"><img src="E:\pagina web William\Imagenes\Empanada.jpg" alt="Empanada 4"></a>
+    </div>
+
+    <!-- Caja de comentarios -->
+    <div class="comentarios">
+        <h2>📝 Deja tu comentario</h2>
+        <textarea id="comentarioTexto" placeholder="Escribe tu comentario aquí..."></textarea>
+        <button class="boton-comentar" onclick="agregarComentario()">Comentar</button>
+        <div id="comentarioLista" class="comentario-lista"></div>
+    </div>
+
+    <!-- Botón de regreso -->
+    <a href="index.html" class="boton-regreso">🔙 Volver al Menú</a>
+
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/3134393149" target="_blank" class="whatsapp">
+        <img src="E:\pagina web William\Imagenes\WhatsApp.png" alt="WhatsApp">
+    </a>
+
+    <script>
+        let contadorEmpanadas = 0;
+
+        function sumarEmpanada() {
+            contadorEmpanadas++;
+            document.getElementById("contador").innerText = contadorEmpanadas;
+        }
+
+        function agregarComentario() {
+            let texto = document.getElementById("comentarioTexto").value;
+            if (texto.trim() !== "") {
+                let nuevoComentario = document.createElement("p");
+                nuevoComentario.textContent = "🗨️ " + texto;
+                document.getElementById("comentarioLista").appendChild(nuevoComentario);
+                document.getElementById("comentarioTexto").value = "";
+            } else {
+                alert("Por favor, escribe un comentario antes de enviarlo.");
+            }
+        }
+
+
+
+    </script>
+
+</body>
+</html>
+
